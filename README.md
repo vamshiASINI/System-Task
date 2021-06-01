@@ -1,4 +1,4 @@
-# install node modules 
+# Install Node Modules 
 Run `npm install` to install the node modules
 then Run `ng serve` to run 
 # Test
