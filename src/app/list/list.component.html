@@ -1,0 +1,41 @@
+<cdk-virtual-scroll-viewport [itemSize]="36">
+    <table class="table-scroll">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">image</th>
+                <th scope="col">Collection</th>
+                <select id="sort-by" (change)="sort($event)">
+                    <option value="" selected disabled hidden>Sort By Price</option>
+                    <option value="lowtohigh" >Low to High Price</option>
+                    <option value="hightolow">High to Low Price</option>
+                </select>
+                <th scope="col">ProductionTitle</th>
+                <th scope="col">StyleName</th>
+                <th scope="col">StyleNumber</th>
+                <th scope="col"> NetQuantity </th>
+                <th scope="col">ProductCode</th>
+                <th scope="col">AvailabeSizes</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let a of file; let i =index">
+            <tr>
+                <td scope="row">{{i+1}}</td>
+                <td scope="row">
+                    <table>
+                        <td *ngFor="let b of a.Images.split('|')">
+                            <img src="{{a.ListImagePath}}{{b}}"></td>
+                    </table>
+                </td>
+                <td scope="row">{{a.Collection}}</td>
+                <td scope="row">{{a.Price}}</td>
+                <td scope="row">{{a.ProductTitle}}</td>
+                <td scope="row">{{a.StyleName}}</td>
+                <td scope="row">{{a.StyleNumber}}</td>
+                <td scope="row">{{a.NetQuantity}}</td>
+                <td scope="row">{{a.ProductCode}}</td>
+                <td scope="row">{{a.AvailableSizes}}</td>
+            </tr>
+        </tbody>
+    </table>
+</cdk-virtual-scroll-viewport>

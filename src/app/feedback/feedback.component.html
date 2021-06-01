@@ -1,0 +1,45 @@
+<section class="Contact-US">
+    <div class="container">
+        <div class="contact-content">
+            <div class="contact-form">
+                <h2 class="form-title">Contact US</h2>
+                <form #contactForm="ngForm" (ngSubmit)="contactForm.valid && onSubmit(contactForm)">
+                    <div class="form-group" [ngClass]="{ 'has-error': contactForm.submitted && !name.valid }">
+                        <label for="InputName">Name</label>
+                        <input type="text" class="form-control" placeholder="Enter Name" name="name" [(ngModel)]="contact.name" #name="ngModel" required maxlength="40" pattern="^[a-zA-Z][(?<=\d\s]*([a-zA-Z]+\s)*[a-zA-Z0-9]+$" data-error="Please enter your name">
+                        <div class="help-block with-errors"></div>
+                        <div [hidden]="!name.errors?.pattern" style="color: red">
+                            name required
+                        </div>
+                    </div>
+                    <div class="form-group" [ngClass]="{ 'has-error': contactForm.submitted && !email.valid }">
+                        <label for="InputEmail">EmailId</label>
+                        <input type="email" class="form-control" placeholder="Email" name="email" [(ngModel)]="contact.email" #email="ngModel" required maxlength="40" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{3}$" (keydown.space)="$event.preventDefault()" data-error="Please enter your Email">
+                        <div [hidden]="!email.errors?.pattern" style="color: red">
+                            Invalid pattern
+                        </div>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group" [ngClass]="{ 'has-error': contactForm.submitted && !mobile.valid }">
+                        <label for="InputPhone">Mobile</label>
+                        <input type="number" class="form-control" placeholder="Mobile No" name="mobile" [(ngModel)]="contact.mobile" #mobile="ngModel" required maxlength="10" pattern="^[6-9][0-9]{9}$" (keypress)="keyPress($event)" data-error="Please enter your mobile no">
+                        <div [hidden]="!mobile.errors?.pattern" style="color: red">
+                            Invalid pattern
+                        </div>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group" [ngClass]="{ 'has-error': contactForm.submitted && !message.valid }">
+                        <label for="Inputmessage">Message</label>
+                        <textarea type="text" class="form-control" placeholder="Message" name="message" [(ngModel)]="contact.message" #message="ngModel" placeholder="Write Message" rows="4" data-error="Write your message" required pattern="^[a-zA-Z]+[(?<=\d\s]*([a-zA-Z]+\s)*[a-zA-Z0-9]+$"></textarea>
+                        <div [hidden]="!message.errors?.pattern" style="color: red">
+                            message should not Start or end blank space
+                        </div>
+                        <div class="help-block with-errors"></div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" [disabled]="!contactForm.valid">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
